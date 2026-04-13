@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>工程思维-A组-竞赛小车建模</title>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [["\\(", "\\)"], ["$", "$"]], displayMath: [["\\[", "\\]"]] },
+      svg: { fontCache: "global" },
+      options: { renderActions: { addMenu: [] } }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <main class="app-shell">
+    <section class="calculator" aria-label="竞赛小车建模计算器">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Physics Model</p>
+          <h1>工程思维-A组-竞赛小车建模</h1>
+          <p class="lead">输入轨道与小车参数，查看碰撞、停留和掉台条件。</p>
+        </div>
+        <div class="top-actions" aria-label="计算操作">
+          <button class="button primary" data-action="calculate">计算</button>
+          <button class="button secondary" data-action="search">搜索最小 x1</button>
+          <button class="button ghost" data-action="reset">重置</button>
+        </div>
+      </header>
+
+      <div class="main-grid">
+        <section class="input-column" aria-label="参数输入">
+          <div class="toolbar-strip">
+            <label class="switch-row">
+              <input id="syncCars" type="checkbox" checked>
+              <span>同步对手参数</span>
+            </label>
+            <label class="switch-row">
+              <input id="autoL" type="checkbox" checked>
+              <span>自动计算 L</span>
+            </label>
+            <button class="theme-toggle" type="button" data-action="theme">深色</button>
+          </div>
+
+          <div id="formRoot" class="form-root"></div>
+        </section>
+
+        <aside class="result-column" aria-label="计算结果">
+          <section class="status-panel">
+            <div class="status-head">
+              <p class="eyebrow">Result</p>
+              <span id="statusBadge" class="status-badge idle">待计算</span>
+            </div>
+            <h2 id="resultTitle">等待输入</h2>
+            <p id="resultMessage">点击“计算”后查看是否满足“我方留台、对手掉台”的目标。</p>
+          </section>
+
+          <section class="schematic-panel" aria-label="赛道示意图">
+            <img src="assets/track-schematic.png" alt="竞赛小车轨道和平台示意图">
+          </section>
+
+          <section class="metrics-panel" aria-label="关键结果">
+            <div class="section-title">
+              <p class="eyebrow">Summary</p>
+              <h2>关键数值</h2>
+            </div>
+            <div id="metricsRoot" class="metrics-grid"></div>
+          </section>
+        </aside>
+      </div>
+
+      <section class="formula-section" aria-label="数学建模步骤">
+        <div class="section-title">
+          <p class="eyebrow">Model Steps</p>
+          <h2>数学建模步骤</h2>
+        </div>
+        <div id="formulaRoot" class="formula-root"></div>
+      </section>
+    </section>
+  </main>
+
+  <nav class="mobile-actions" aria-label="移动端计算操作">
+    <button class="button primary" data-action="calculate">计算</button>
+    <button class="button secondary" data-action="search">搜索 x1</button>
+    <button class="button ghost" data-action="reset">重置</button>
+  </nav>
+</body>
+</html>
